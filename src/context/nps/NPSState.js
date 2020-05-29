@@ -2,7 +2,14 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import NPSContext from './npsContext';
 import NPSReducer from './npsReducer';
-import { SEARCH_PARKS, GET_PARK, CLEAR_SEARCH, SET_LOADING } from '../types';
+import {
+  SEARCH_PARKS,
+  GET_PARK,
+  CLEAR_SEARCH,
+  SET_LOADING,
+  SET_ALERT,
+  CLEAR_ALERT
+} from '../types';
 
 let npsAPIKey;
 
@@ -17,7 +24,8 @@ const NPSState = ({ children }) => {
     parks: [],
     park: {},
     details: [],
-    loading: false
+    loading: false,
+    alert: false
   };
 
   const [state, dispatch] = useReducer(NPSReducer, initialState);
@@ -60,6 +68,12 @@ const NPSState = ({ children }) => {
   // Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
+  // Set Alert
+  const setAlert = () => dispatch({ type: SET_ALERT });
+
+  // Set Alert
+  const clearAlert = () => dispatch({ type: CLEAR_ALERT });
+
   return (
     <NPSContext.Provider
       value={{
@@ -67,9 +81,12 @@ const NPSState = ({ children }) => {
         park: state.park,
         details: state.details,
         loading: state.loading,
+        alert: state.alert,
         searchParks,
         clearSearch,
-        getPark
+        getPark,
+        setAlert,
+        clearAlert
       }}
     >
       {children}

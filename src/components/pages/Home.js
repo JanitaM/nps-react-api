@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from '../parks/Search';
+import Search from '../layout/Search';
 import Parks from '../parks/Parks';
 
 const Home = () => {

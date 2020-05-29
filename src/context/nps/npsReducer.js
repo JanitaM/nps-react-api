@@ -1,4 +1,11 @@
-import { SEARCH_PARKS, GET_PARK, CLEAR_SEARCH, SET_LOADING } from '../types';
+import {
+  SEARCH_PARKS,
+  GET_PARK,
+  CLEAR_SEARCH,
+  SET_LOADING,
+  SET_ALERT,
+  CLEAR_ALERT
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -25,6 +32,17 @@ export default (state, action) => {
         ...state,
         loading: true
       };
+    case SET_ALERT:
+      return {
+        ...state,
+        alert: true
+      };
+    case CLEAR_ALERT:
+      return {
+        ...state,
+        alert: false
+      };
+
     default:
       return state;
   }
