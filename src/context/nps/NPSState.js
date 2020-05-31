@@ -35,7 +35,7 @@ const NPSState = ({ children }) => {
     setLoading();
 
     const res = await axios.get(
-      `https://developer.nps.gov/api/v1/parks?limit=9&stateCode=${text}&api_key=${npsAPIKey}`
+      `https://developer.nps.gov/api/v1/parks?stateCode=${text}&api_key=${npsAPIKey}`
     );
 
     dispatch({
@@ -48,19 +48,15 @@ const NPSState = ({ children }) => {
   const getPark = async (parkCode) => {
     setLoading();
 
-    const res = axios.get(
+    const res = await axios.get(
       `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${npsAPIKey}`
     );
 
-    console.log(res.data);
-
     dispatch({
       type: GET_PARK,
-      payload: res.data
+      payload: res.data.data[0]
     });
   };
-
-  // Get Details
 
   // Clear Search
   const clearSearch = () => dispatch({ type: CLEAR_SEARCH });

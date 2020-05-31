@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import NPSContext from '../../context/nps/npsContext';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -11,27 +10,41 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const ParkItem = ({
-  park: { fullName, name, addresses, description, images }
+  park: {
+    contacts,
+    activities,
+    entranceFees,
+    url,
+    directionsInfo,
+    topics,
+    description,
+    fullName,
+    name,
+    addresses,
+    states,
+    images,
+    parkCode
+  }
 }) => {
-  const npsContext = useContext(NPSContext);
-  const { park } = npsContext;
-
   const classes = useStyles();
+
+  if (addresses.length === 0) return null;
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={images[0].url}
-          title={images[0].title}
+          image={
+            images[0]
+              ? images[0].url
+              : 'https://www.fcgov.com/parks/img/city-park.jpg'
+          }
+          title={images[0] ? images[0].title : 'No image available'}
         />
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
             {fullName}
-          </Typography>
-          <Typography gutterBottom variant='h5' component='h2'>
-            {addresses[0]['city']}, {addresses[0]['stateCode']}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
             {description}
@@ -39,7 +52,7 @@ const ParkItem = ({
         </CardContent>
       </CardActionArea>
       <CardActions style={{ alignSelf: 'flexEnd' }}>
-        <Link to={`/park/${name}`} park={park} size='small' color='primary'>
+        <Link to={`/park/${parkCode}`} size='small' color='primary'>
           Learn More
         </Link>
       </CardActions>

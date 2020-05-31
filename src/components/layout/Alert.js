@@ -19,7 +19,7 @@ function Alert() {
         open={alert}
         autoHideDuration={100}
         onClick={clearAlert}
-        message='Please Enter A US State Abbreviation'
+        message='Please Enter a Valid US State Abbreviation'
         action={
           <React.Fragment>
             <IconButton

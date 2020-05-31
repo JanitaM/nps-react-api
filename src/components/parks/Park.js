@@ -1,14 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import NPSContext from '../../context/nps/npsContext';
 import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
 
-const Park = () => {
+const Park = ({ match }) => {
   const npsContext = useContext(NPSContext);
-  const { loading, park } = npsContext;
-  // all of the parks are accessible here
-  // looking for parked we clicked on
-  console.log(park);
+  const { loading, getPark, park } = npsContext;
+
+  useEffect(() => {
+    getPark(match.params.parkCode);
+  }, []);
+
+  const {
+    contacts,
+    activities,
+    entranceFees,
+    url,
+    directionsInfo,
+    topics,
+    description,
+    fullName,
+    name,
+    addresses,
+    states,
+    images,
+    parkCode
+  } = park;
 
   if (loading) {
     return <Loading />;

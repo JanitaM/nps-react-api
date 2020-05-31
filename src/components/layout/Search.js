@@ -2,11 +2,10 @@ import React, { useState, useContext } from 'react';
 import NPSContext from '../../context/nps/npsContext';
 import { TextField, InputAdornment, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import Alert from './Alert';
 
 const Search = () => {
   const npsContext = useContext(NPSContext);
-  const { searchParks, clearSearch, setAlert, alert } = npsContext;
+  const { searchParks, clearSearch, setAlert } = npsContext;
 
   const [text, setText] = useState('');
 
@@ -15,7 +14,7 @@ const Search = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (text === '') {
+    if (text === '' || text.length !== 2) {
       setAlert(true);
     } else {
       searchParks(text);
@@ -61,7 +60,6 @@ const Search = () => {
             Clear
           </Button>
         )}
-        <Alert />
       </form>
     </div>
   );
