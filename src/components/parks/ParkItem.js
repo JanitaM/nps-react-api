@@ -10,21 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const ParkItem = ({
-  park: {
-    contacts,
-    activities,
-    entranceFees,
-    url,
-    directionsInfo,
-    topics,
-    description,
-    fullName,
-    name,
-    addresses,
-    states,
-    images,
-    parkCode
-  }
+  park: { description, fullName, addresses, images, parkCode }
 }) => {
   const classes = useStyles();
 
