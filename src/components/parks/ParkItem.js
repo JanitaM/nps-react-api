@@ -56,8 +56,8 @@ const useStyles = makeStyles({
   }
 });
 
-ParkItem.propTypes = {
-  park: PropTypes.object.isRequired
-};
+// ParkItem.propTypes = {
+//   park: PropTypes.object.isRequired
+// };
 
 export default ParkItem;
