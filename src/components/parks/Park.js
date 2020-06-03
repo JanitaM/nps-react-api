@@ -85,6 +85,7 @@ const Park = ({ match }) => {
   }
 };
 
+// change styles here
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

@@ -1,14 +1,24 @@
 import React from 'react';
-import loading from './loading.gif';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Loading = () => {
+  const classes = useStyles();
+
   return (
-    <img
-      src={loading}
-      alt='loading'
-      style={{ width: '100px', margin: '5rem auto' }}
-    />
+    <div className={classes.root}>
+      <CircularProgress size='6rem' />
+    </div>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'teal'
+  }
+}));
 
 export default Loading;

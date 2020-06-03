@@ -37,9 +37,3 @@ img {
   overflow: hidden;
   padding: 0 2rem;
 }
-
-.about-page,
-.not-found-page {
-  margin: 5rem;
-  text-align: center;
-}

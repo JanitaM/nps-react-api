@@ -1,13 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import {
+  Grid,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography
+} from '@material-ui/core';
 
 const ParkItem = ({
   park: { description, fullName, addresses, images, parkCode }
@@ -17,47 +19,53 @@ const ParkItem = ({
   if (addresses.length === 0) return null;
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={
-            images[0]
-              ? images[0].url
-              : 'https://www.fcgov.com/parks/img/city-park.jpg'
-          }
-          title={images[0] ? images[0].title : 'No image available'}
-        />
-        <CardContent>
-          <Typography gutterBottom variant='h5' component='h2'>
-            {fullName}
-          </Typography>
-          <Typography variant='body2' color='textSecondary' component='p'>
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions style={{ alignSelf: 'flexEnd' }}>
-        <Link to={`/park/${parkCode}`} size='small' color='primary'>
-          Learn More
-        </Link>
-      </CardActions>
-    </Card>
+    <Grid item xs={12} sm={4} className={classes.gridContainer}>
+      <Link to={`/park/${parkCode}`}>
+        <Card className={classes.cardStyle}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image={
+                images[0]
+                  ? images[0].url
+                  : 'https://www.fcgov.com/parks/img/city-park.jpg'
+              }
+              title={images[0] ? images[0].title : 'No image available'}
+            />
+            <CardContent className={classes.content}>
+              <Typography gutterBottom variant='h5' component='h2'>
+                {fullName}
+              </Typography>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                {description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Link to={`/park/${parkCode}`} size='small' color='primary'>
+              Learn More
+            </Link>
+          </CardActions>
+        </Card>
+      </Link>
+    </Grid>
   );
 };
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 300,
-    margin: '1rem'
+  gridContainer: {
+    display: 'flex'
   },
   media: {
-    height: 140
+    height: '40vh'
+  },
+  cardStyle: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%'
   }
 });
-
-// ParkItem.propTypes = {
-//   park: PropTypes.object.isRequired
-// };
 
 export default ParkItem;

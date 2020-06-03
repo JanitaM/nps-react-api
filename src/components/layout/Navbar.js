@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='sticky'>
+      <AppBar position='sticky' className={classes.container}>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
             National Park Service API App
@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
   },
+  container: {
+    backgroundColor: '#014040'
+  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -51,7 +54,11 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     marginLeft: '20px',
-    color: '#fff'
+    color: '#fff',
+    '&:hover': {
+      borderBottom: '2px solid #F28C0F',
+      color: '#fff'
+    }
   }
 }));
 

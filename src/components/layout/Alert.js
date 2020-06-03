@@ -1,16 +1,17 @@
-import React, { useState, useContext } from 'react';
-import Button from '@material-ui/core/Button';
-import { Snackbar } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+import React, { useContext } from 'react';
+import { Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { makeStyles } from '@material-ui/core/styles';
 import NPSContext from '../../context/nps/npsContext';
 
 function Alert() {
   const npsContext = useContext(NPSContext);
-  const { alert, setAlert, clearAlert } = npsContext;
+  const { alert, clearAlert } = npsContext;
+
+  const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.root}>
       <Snackbar
         anchorOrigin={{
           vertical: 'top',
@@ -21,7 +22,7 @@ function Alert() {
         onClick={clearAlert}
         message='Please Enter a Valid US State Abbreviation'
         action={
-          <React.Fragment>
+          <>
             <IconButton
               size='small'
               aria-label='close'
@@ -30,11 +31,20 @@ function Alert() {
             >
               <CloseIcon fontSize='small' />
             </IconButton>
-          </React.Fragment>
+          </>
         }
       />
     </div>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2)
+    }
+  }
+}));
 
 export default Alert;
