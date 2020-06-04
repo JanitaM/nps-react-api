@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
-  Paper,
   Typography,
   Grid,
   Card,
   CardContent,
   Divider
 } from '@material-ui/core';
+import ImageGridList from './ImageGridList';
 
 const Park = ({ match }) => {
   const npsContext = useContext(NPSContext);
@@ -39,95 +39,134 @@ const Park = ({ match }) => {
     return <Loading />;
   } else {
     return (
-      <div>
-        <Grid container direction='row' spacing={2}>
-          <Grid item xs={12} sm={8} key={id}>
-            <Paper>
-              <Typography variant='h4' gutterBottom>
-                {fullName}
-              </Typography>
-              <Divider />
-              <Typography variant='body1' gutterBottom>
-                {description}
-              </Typography>
-              <Typography variant='body1' gutterBottom>
-                <strong>Entrance Fees:</strong>
-              </Typography>
-              {entranceFees &&
-                entranceFees.map((fee) => (
-                  <div key={fee.cost} style={{ marginBottom: '10px' }}>
-                    <Typography variant='body1'>
-                      {fee.title}: ${fee.cost.slice(0, 5)}
-                    </Typography>
-                    <Typography variant='body2'>{fee.description}</Typography>
-                  </div>
-                ))}
-              <Typography variant='body1' gutterBottom>
-                <strong>Entrance Passes:</strong>
-              </Typography>
-              {entrancePasses &&
-                entrancePasses.map((pass) => (
-                  <div key={pass.cost}>
-                    <Typography variant='body1'>
-                      {pass.title}: ${pass.cost.slice(0, 5)}
-                    </Typography>
-                    <Typography variant='body2'>{pass.description}</Typography>
-                  </div>
-                ))}
-
-              <Typography variant='body1' gutterBottom>
-                <strong>Directions:</strong> {directionsInfo}
-              </Typography>
-
-              <Button href={url} color='primary'>
-                Visit Official Park Website For More Information
-              </Button>
-            </Paper>
+      <>
+        <Grid
+          container
+          direction='row'
+          className={classes.container}
+          justify='space-around'
+          alignItems='stretch'
+        >
+          <Grid
+            container
+            direction='row'
+            item
+            spacing={2}
+            xs={12}
+            sm={8}
+            justify='space-around'
+            alignItems='stretch'
+          >
+            <Grid item sm={12} key={id}>
+              <Card className={classes.itemContainer}>
+                <Typography variant='h4' gutterBottom>
+                  {fullName}
+                </Typography>
+                <Divider />
+                <Typography
+                  variant='body1'
+                  gutterBottom
+                  className={classes.item}
+                >
+                  {description}
+                </Typography>
+                <Typography variant='body1' gutterBottom>
+                  <strong>Entrance Fees:</strong>
+                </Typography>
+                {entranceFees &&
+                  entranceFees.map((fee) => (
+                    <div key={fee.cost}>
+                      <Typography variant='body1'>
+                        {fee.title}: ${fee.cost.slice(0, 5)}
+                      </Typography>
+                      <Typography variant='body2' gutterBottom>
+                        {fee.description}
+                      </Typography>
+                    </div>
+                  ))}
+                <Typography variant='body1' gutterBottom>
+                  <strong>Entrance Passes:</strong>
+                </Typography>
+                {entrancePasses &&
+                  entrancePasses.map((pass) => (
+                    <div key={pass.cost}>
+                      <Typography variant='body1'>
+                        {pass.title}: ${pass.cost.slice(0, 5)}
+                      </Typography>
+                      <Typography variant='body2' gutterBottom>
+                        {pass.description}
+                      </Typography>
+                    </div>
+                  ))}
+                <Typography variant='body1' gutterBottom>
+                  <strong>Directions:</strong>
+                </Typography>
+                <Typography variant='body1' gutterBottom>
+                  {directionsInfo}
+                </Typography>
+                <Divider />
+                <Button href={url} className={classes.visitBtn}>
+                  Visit Official Park Website
+                </Button>
+              </Card>
+            </Grid>
+            <Grid item sm={12}>
+              <ImageGridList />
+              {/* <Card>
+                <CardContent>
+                  <Typography gutterBottom>Images go here</Typography>
+                </CardContent>
+              </Card> */}
+            </Grid>
           </Grid>
+
           <Grid item xs={12} sm={4}>
             <Card>
               <CardContent>
-                <Typography variant='h6'>
+                <Typography variant='h6' gutterBottom>
                   <strong> Available Activities:</strong>{' '}
                 </Typography>
                 <Divider />
-                {activities &&
-                  activities.map((activity) => (
-                    <Typography key={activity.id}>{activity.name}</Typography>
-                  ))}
+                <div className={classes.item}>
+                  {activities &&
+                    activities.map((activity) => (
+                      <Typography key={activity.id} gutterBottom>
+                        {activity.name}
+                      </Typography>
+                    ))}
+                </div>
               </CardContent>
             </Card>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item xs={12}>
-            <Card>
-              <CardContent>
-                <Typography>Images go here</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+
         <Link to='/'>
           <Button variant='contained' color='primary'>
             Back to Parks
           </Button>
         </Link>
-      </div>
+      </>
     );
   }
 };
 
-// change styles here
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16)
-    }
+  container: {
+    margin: '2rem 0'
+  },
+  itemContainer: {
+    padding: '1rem'
+  },
+  item: {
+    padding: '1rem 0'
+  },
+  visitBtn: {
+    backgroundColor: '#03A678',
+    margin: '1rem 0',
+    '&:hover': {
+      backgroundColor: '#02735E'
+    },
+    padding: '0.5rem 1rem'
   }
 }));
 

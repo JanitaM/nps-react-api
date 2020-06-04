@@ -11,7 +11,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #c2d2f2;
+  background-color: #e6eeff;
   color: #000;
 }
 
@@ -35,5 +35,4 @@ img {
   max-width: 1100px;
   margin: 0 auto;
   overflow: hidden;
-  padding: 0 2rem;
 }
