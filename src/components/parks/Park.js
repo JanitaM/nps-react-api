@@ -9,8 +9,8 @@ import {
   Typography,
   Grid,
   Card,
-  CardActions,
-  CardContent
+  CardContent,
+  Divider
 } from '@material-ui/core';
 
 const Park = ({ match }) => {
@@ -22,19 +22,15 @@ const Park = ({ match }) => {
   }, []);
 
   const {
-    contacts,
     activities,
     entranceFees,
+    entrancePasses,
     url,
     directionsInfo,
-    topics,
     description,
     fullName,
-    name,
-    addresses,
-    states,
     images,
-    parkCode
+    id
   } = park;
 
   const classes = useStyles();
@@ -44,29 +40,61 @@ const Park = ({ match }) => {
   } else {
     return (
       <div>
-        <Link to='/'>
-          <Button variant='contained' color='primary'>
-            Back to Parks
-          </Button>
-        </Link>
         <Grid container direction='row' spacing={2}>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={8} key={id}>
             <Paper>
               <Typography variant='h4' gutterBottom>
                 {fullName}
               </Typography>
-              <Typography variant='h6' gutterBottom>
+              <Divider />
+              <Typography variant='body1' gutterBottom>
                 {description}
               </Typography>
+              <Typography variant='body1' gutterBottom>
+                <strong>Entrance Fees:</strong>
+              </Typography>
+              {entranceFees &&
+                entranceFees.map((fee) => (
+                  <div key={fee.cost} style={{ marginBottom: '10px' }}>
+                    <Typography variant='body1'>
+                      {fee.title}: ${fee.cost.slice(0, 5)}
+                    </Typography>
+                    <Typography variant='body2'>{fee.description}</Typography>
+                  </div>
+                ))}
+              <Typography variant='body1' gutterBottom>
+                <strong>Entrance Passes:</strong>
+              </Typography>
+              {entrancePasses &&
+                entrancePasses.map((pass) => (
+                  <div key={pass.cost}>
+                    <Typography variant='body1'>
+                      {pass.title}: ${pass.cost.slice(0, 5)}
+                    </Typography>
+                    <Typography variant='body2'>{pass.description}</Typography>
+                  </div>
+                ))}
+
+              <Typography variant='body1' gutterBottom>
+                <strong>Directions:</strong> {directionsInfo}
+              </Typography>
+
               <Button href={url} color='primary'>
-                Visit Official Park Website
+                Visit Official Park Website For More Information
               </Button>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card>
               <CardContent>
-                <Typography>Available Activities:</Typography>
+                <Typography variant='h6'>
+                  <strong> Available Activities:</strong>{' '}
+                </Typography>
+                <Divider />
+                {activities &&
+                  activities.map((activity) => (
+                    <Typography key={activity.id}>{activity.name}</Typography>
+                  ))}
               </CardContent>
             </Card>
           </Grid>
@@ -80,6 +108,11 @@ const Park = ({ match }) => {
             </Card>
           </Grid>
         </Grid>
+        <Link to='/'>
+          <Button variant='contained' color='primary'>
+            Back to Parks
+          </Button>
+        </Link>
       </div>
     );
   }
