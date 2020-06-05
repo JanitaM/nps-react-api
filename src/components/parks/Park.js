@@ -112,11 +112,6 @@ const Park = ({ match }) => {
             </Grid>
             <Grid item sm={12}>
               <ImageGridList />
-              {/* <Card>
-                <CardContent>
-                  <Typography gutterBottom>Images go here</Typography>
-                </CardContent>
-              </Card> */}
             </Grid>
           </Grid>
 

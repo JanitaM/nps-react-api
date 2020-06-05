@@ -12,14 +12,10 @@ const Parks = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const parksPerPage = 6;
-
   const indexOfLastPark = currentPage * parksPerPage;
   const indexOfFirstPark = indexOfLastPark - parksPerPage;
-
   const currentSetofParks = parks.slice(indexOfFirstPark, indexOfLastPark);
-
   const totalNumOfPages = Math.ceil(parks.length / parksPerPage);
-
   const setPage = (page) => setCurrentPage(page);
 
   const classes = useStyles();
