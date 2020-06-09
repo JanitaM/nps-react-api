@@ -22,8 +22,6 @@ const ImageGridList = () => {
     totalNumOfFrames = Math.ceil(images.length / imagesPerFrame);
   }
 
-  console.log(images);
-
   const classes = useStyles();
 
   if (loading) {

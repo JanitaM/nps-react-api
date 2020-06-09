@@ -12,13 +12,12 @@ const Loading = () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    color: 'teal'
+    alignItems: 'center'
   }
-}));
+});
 
 export default Loading;

@@ -39,11 +39,11 @@ const Park = ({ match }) => {
     return <Loading />;
   } else {
     return (
-      <>
+      <div className={classes.container}>
         <Grid
           container
           direction='row'
-          className={classes.container}
+          className={classes.gridContainer}
           justify='space-around'
           alignItems='stretch'
         >
@@ -135,19 +135,22 @@ const Park = ({ match }) => {
           </Grid>
         </Grid>
 
-        <Link to='/'>
+        <Link to='/' className={classes.backBtn}>
           <Button variant='contained' color='primary'>
             Back to Parks
           </Button>
         </Link>
-      </>
+      </div>
     );
   }
 };
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    margin: '2rem 0'
+    padding: '.75rem'
+  },
+  gridContainer: {
+    marginTop: '2rem'
   },
   itemContainer: {
     padding: '1rem'
@@ -162,6 +165,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#02735E'
     },
     padding: '0.5rem 1rem'
+  },
+  backBtn: {
+    float: 'right',
+    margin: '1rem 0'
   }
 }));
 

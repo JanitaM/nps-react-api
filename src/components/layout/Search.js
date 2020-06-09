@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Alert from './Alert';
+import Filter from './Filter';
 
 const Search = () => {
   const npsContext = useContext(NPSContext);
@@ -62,15 +63,19 @@ const Search = () => {
         >
           Search
         </Button>
+
         {npsContext.parks.length > 0 && (
-          <Button
-            className={classes.clearBtn}
-            size='small'
-            type='submit'
-            onClick={clearSearch}
-          >
-            Clear
-          </Button>
+          <>
+            <Button
+              className={classes.clearBtn}
+              size='small'
+              type='submit'
+              onClick={clearSearch}
+            >
+              Clear
+            </Button>
+            <Filter />
+          </>
         )}
       </form>
     </div>
