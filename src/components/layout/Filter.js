@@ -8,15 +8,15 @@ import {
   Button
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import Alert from './Alert';
 
 const Filter = () => {
   const npsContext = useContext(NPSContext);
-  const { parks, setAlert, filtered } = npsContext;
+  const { parks, filtered } = npsContext;
 
   const [filterText, setFilterText] = useState('');
 
   const filterParks = (filterText) => {
+    filterText = filterText.charAt(0).toUpperCase() + filterText.slice(1);
     let filteredParksArr = [];
     for (let park of parks) {
       park.activities.filter((activity) => {
@@ -35,7 +35,7 @@ const Filter = () => {
     e.preventDefault();
 
     if (filterText === '') {
-      setAlert(true);
+      return;
     } else {
       filterParks(filterText);
     }
@@ -45,8 +45,7 @@ const Filter = () => {
 
   return (
     <div className={classes.container}>
-      <Alert />
-      <Typography className={classes.intro}>
+      <Typography className={classes.text}>
         Filter parks by activities
       </Typography>
       <form onSubmit={onSubmit}>
@@ -65,7 +64,7 @@ const Filter = () => {
           }}
         />
         <Button
-          // className={classes.searchBtn}
+          className={classes.filterBtn}
           size='small'
           type='submit'
           onClick={onSubmit}
@@ -79,10 +78,22 @@ const Filter = () => {
 
 const useStyles = makeStyles({
   container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     margin: '3rem auto'
   },
-  intro: {
-    marginBottom: '1rem'
+  text: {
+    marginRight: '3rem'
+  },
+  filterBtn: {
+    backgroundColor: '#F28C0F',
+    color: '#fff',
+    margin: '0 1rem',
+    '&:hover': {
+      backgroundColor: '#D97D0D'
+    }
   }
 });
 
