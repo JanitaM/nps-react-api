@@ -4,7 +4,8 @@ import {
   CLEAR_SEARCH,
   SET_LOADING,
   SET_ALERT,
-  CLEAR_ALERT
+  CLEAR_ALERT,
+  FILTER_PARKS
 } from '../types';
 
 export default (state, action) => {
@@ -25,7 +26,8 @@ export default (state, action) => {
       return {
         ...state,
         parks: [],
-        loading: false
+        loading: false,
+        filteredParks: []
       };
     case SET_LOADING:
       return {
@@ -43,6 +45,12 @@ export default (state, action) => {
         alert: false
       };
 
+    case FILTER_PARKS:
+      return {
+        ...state,
+        filteredParks: action.payload,
+        loading: false
+      };
     default:
       return state;
   }

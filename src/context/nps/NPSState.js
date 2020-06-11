@@ -8,7 +8,8 @@ import {
   CLEAR_SEARCH,
   SET_LOADING,
   SET_ALERT,
-  CLEAR_ALERT
+  CLEAR_ALERT,
+  FILTER_PARKS
 } from '../types';
 
 let npsAPIKey;
@@ -25,7 +26,8 @@ const NPSState = ({ children }) => {
     park: {},
     details: [],
     loading: false,
-    alert: false
+    alert: false,
+    filteredParks: []
   };
 
   const [state, dispatch] = useReducer(NPSReducer, initialState);
@@ -70,6 +72,14 @@ const NPSState = ({ children }) => {
   // Set Alert
   const clearAlert = () => dispatch({ type: CLEAR_ALERT });
 
+  // Filter Parks
+  const filtered = (filteredParksArr) => {
+    dispatch({
+      type: FILTER_PARKS,
+      payload: filteredParksArr
+    });
+  };
+
   return (
     <NPSContext.Provider
       value={{
@@ -82,7 +92,9 @@ const NPSState = ({ children }) => {
         clearSearch,
         getPark,
         setAlert,
-        clearAlert
+        clearAlert,
+        filtered,
+        filteredParks: state.filteredParks
       }}
     >
       {children}

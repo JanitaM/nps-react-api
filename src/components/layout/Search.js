@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Alert from './Alert';
-import Filter from './Filter';
 
 const Search = () => {
   const npsContext = useContext(NPSContext);
@@ -74,7 +73,6 @@ const Search = () => {
             >
               Clear
             </Button>
-            <Filter />
           </>
         )}
       </form>
