@@ -90,7 +90,7 @@ const useStyles = makeStyles({
   filterBtn: {
     backgroundColor: '#F28C0F',
     color: '#fff',
-    margin: '0 1rem',
+    margin: '1rem',
     '&:hover': {
       backgroundColor: '#D97D0D'
     }
