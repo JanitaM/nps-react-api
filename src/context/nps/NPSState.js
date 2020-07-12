@@ -14,11 +14,13 @@ import {
 
 let npsAPIKey;
 
-if (process.env.NODE_ENV !== 'production') {
-  npsAPIKey = process.env.REACT_APP_NPS_API_KEY;
-} else {
-  npsAPIKey = process.env.NPS_API_KEY;
-}
+npsAPIKey = process.env.REACT_APP_NPS_API_KEY;
+
+// if (process.env.NODE_ENV !== 'production') {
+//   npsAPIKey = process.env.REACT_APP_NPS_API_KEY;
+// } else {
+//   npsAPIKey = process.env.NPS_API_KEY;
+// }
 
 const NPSState = ({ children }) => {
   const initialState = {
